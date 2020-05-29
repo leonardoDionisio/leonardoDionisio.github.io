@@ -1,0 +1,53 @@
+body {
+  background: #101010; }
+
+.header {
+  left: 0;
+  height: 100vh;
+  width: 67px;
+  background: #000000; }
+  .header .header-title {
+    position: absolute;
+    top: 190px;
+    left: -125px;
+    transform: rotate(90deg);
+    transform-origin: top;
+    color: #ffffff;
+    font-family: "poppinsextrabold";
+    letter-spacing: 8.4px;
+    font-size: 21px; }
+
+.header-icon-box {
+  position: relative;
+  top: 385px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap; }
+  .header-icon-box .header-icon {
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin-bottom: 35px;
+    position: relative;
+    cursor: pointer; }
+    .header-icon-box .header-icon:last-child {
+      margin-bottom: 0; }
+    .header-icon-box .header-icon::after {
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      left: -5px;
+      top: -4px;
+      border-radius: 50%;
+      transition: transform 0.2s, opacity 0.3s; }
+    .header-icon-box .header-icon:hover::after {
+      transform: scale(1.3);
+      opacity: 0;
+      background: #ffb912; }
+    .header-icon-box .header-icon svg {
+      width: 100%; }
+      .header-icon-box .header-icon svg:hover path, .header-icon-box .header-icon svg:hover circle {
+        fill: #ffb912; }
