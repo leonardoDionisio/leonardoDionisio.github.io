@@ -9,17 +9,19 @@ body {
     height: 100vh;
     width: 67px;
     background: $black;
+    position: absolute;
 
     .header-title {
         position: absolute;
         top: 190px;
-        left: -125px;
+        left: -129px;
         transform: rotate(90deg);
         transform-origin: top;
         color: $white;
         font-family: $popinsextrabold;
         letter-spacing: 8.4px;
         font-size: 21px;
+        width: 345px;
     }
 }
 
@@ -52,7 +54,7 @@ body {
             left: -5px;
             top: -4px;
             border-radius: 50%;
-            transition: transform 0.2s, opacity 0.3s, -webkit-transform 0.2s;
+            transition: transform 0.2s, opacity 0.3s;
         }
 
         &:hover {
@@ -104,5 +106,280 @@ body {
 }
 
 .main-banner {
-    
+    position: relative;
+    width: calc(100% - 70px);
+    height: 720px;
+    left: 68px;
+    background: url('../img/banner.png') top center / cover no-repeat;
+
+    .overlayer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+
+        p {
+            font-family: $popinsextrabold;
+            text-transform: uppercase;
+            color: $white;
+        }
+
+        .resume-title {
+            font-size: 125px;
+            letter-spacing: 9px;
+            opacity: 0.3;
+            text-shadow: 0px 0px 17px;
+        }
+
+        .about-me {
+            position: absolute;
+            font-size: 66px;
+            text-shadow: 0px 0px 6px #000;
+
+            span {
+                color: $second-color;
+            }
+        }
+
+        .motto {
+            position: absolute;
+            margin-top: 145px;
+            text-align: center;
+
+            &::after, &::before {
+                content: '';
+                position: absolute;
+                width: 40px;
+                left: -55px;
+                transform: translateY(-50%);
+                background-color: $second-color;
+                height: 3px;
+                top: 50%;
+            }
+
+            &::after{
+                left: auto;
+                right: -55px;
+            }
+
+            p {
+                font-family: $popinsregular;
+                font-size: 16px;
+                color: white;
+                letter-spacing: 7px;
+                text-transform: uppercase;
+            }
+        }
+
+        .more {
+            position: absolute;
+            cursor: pointer;
+            top: 35px;
+            right: 35px;
+            letter-spacing: 3px;
+            font-size: 15px;
+            overflow: hidden;
+            padding-bottom: 3px;
+            z-index: 1000;
+
+            &.more-active {
+                &::before {
+                    transition: max-width .3s;
+                    transition-delay: 0.1s;
+                    max-width: 100%;
+                }
+
+                &::after {
+                    transition: opacity 0.2s, bottom 0.2s;
+                    opacity: 1;
+                    bottom: 0;
+                }
+            }
+
+            &:hover {
+                &::before {
+                    transition: max-width .3s;
+                    transition-delay: 0.1s;
+                    max-width: 100%;
+                }
+
+                &::after {
+                    transition: opacity 0.2s, bottom 0.2s;
+                    opacity: 1;
+                    bottom: 0;
+                }
+            }
+
+            &::before {
+                content: attr(data-hover);
+                position: absolute;
+                color: $second-color;
+                left: 0;
+                overflow: hidden;
+                max-width: 0;
+                transition: max-width 0.5s;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                display: block;
+                bottom: 8px;
+                opacity: 0;
+                width: 100%;
+                height: 2px;
+                background: $second-color;
+                transition: opacity 0.5s, bottom 1s;
+                transition-delay: 0.5s;
+            }
+        }
+    }
+}
+
+
+nav {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    visibility: hidden;
+    transition: visibility;
+    transition-delay: .6s;
+
+    &.nav-opened {
+        visibility: visible;
+        transition-delay: 0s;
+
+        .grid-container {
+            .menu-1 {
+                width: 100%;
+                transition: width .2s ease-in;
+                transition-delay: 0.1s;
+            }
+
+            .menu-2 {
+                height: 100%;
+                transition: height .2s ease-in;
+                transition-delay: 0.2s;
+            }
+
+            .menu-3, .menu-5 {
+                transform: scaleY(1);
+                transition: transform .2s ease-in;
+                transition-delay: 0.3s;
+            }
+
+            .menu-4 {
+                transform: scaleX(1);
+                transition: transform .2s ease-in;
+                transition-delay: 0.4s;
+            }
+
+            .menu-5 {
+                transition-delay: 0.5s;
+            }
+        }
+    }
+
+    .grid-container {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+          "menu-1 menu-2 menu-5 menu-5"
+          "menu-1 menu-2 menu-5 menu-5"
+          "menu-3 menu-4 menu-5 menu-5"
+          "menu-3 menu-4 menu-5 menu-5";
+
+        .menu-1 {
+            grid-area: menu-1;
+            background-color: red;
+            width: 0px;
+            transition: width .3s;
+            will-change: width;
+            transition-delay: 0.1s;
+        }
+
+        .menu-2 {
+            grid-area: menu-2;
+            background-color: $second-color-darker;
+            height: 0px;
+            transition: height .3s;
+            will-change: height;
+            transition-delay: 0.2s;
+        }
+
+        .menu-3 {
+            grid-area: menu-3;
+            background-color: $background-light;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform .3s;
+            will-change: transform;
+            transition-delay: 0.3s;
+        }
+        .menu-4 {
+            grid-area: menu-4;
+            background-color: rgb(0, 38, 255);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform .3s;
+            will-change: transform;
+            transition-delay: 0.4s;
+        }
+
+        .menu-5 {
+            grid-area: menu-5;
+            background-color: $background-light;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform .3s;
+            will-change: transform;
+            transition-delay: 0.5s;
+        }
+    }
+}
+
+#cursor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    border: 2px solid white;
+    opacity: 0.5;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: transform .3s;
+}
+
+#cursor_inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: white;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: transform .3s, opacity .3s;
+    transition-delay: .2s;
+}
+
+.cursor-active {
+    #cursor {
+        display: none;
+        transform: scale(1.4);
+        transition: transform .3s;
+    }
+
+    #cursor_inner {
+        transform: scale(10);
+        opacity: 0.3;
+        transition: transform .3s, opacity .3s;
+    }
 }
