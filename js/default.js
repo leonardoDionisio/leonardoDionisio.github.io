@@ -1,18 +1,27 @@
 import mottos from './consts/consts.js';
 
+// Motto
 document.addEventListener("DOMContentLoaded", () => {
     let mottoElement = document.getElementsByClassName('motto')[0].getElementsByTagName('p')[0];
-    mottoElement.innerHTML = mottos[Math.floor(Math.random() * 3)];
+    console.log(mottos);
+    mottoElement.innerHTML = mottos[Math.floor(Math.random() * 5)];
 });
 
+// Menu Open
 document.getElementsByClassName('more')[0].addEventListener('click', (obj) => {
-    obj.target.classList.toggle('more-active');
-    document.getElementById('nav').classList.toggle('nav-opened');
+    document.getElementById('main').classList.toggle('menu-opened');
 })
 
+// Cursor config
 const cursor = document.getElementById('cursor');
 const cursor_inner = document.getElementById('cursor_inner');
+const ww = window.innerWidth;
+const wh = window.innerHeight;
+
 window.addEventListener('mousemove', function(e){
+
+    if (e.clientX >= (ww - 29) || e.clientY >= (wh - 29)) return;
+
     setTimeout(() => {
         cursor_inner.style.left = `${e.clientX - 7 / 2}px`;
         cursor_inner.style.top = `${e.clientY - 7 / 2}px`;
@@ -24,9 +33,8 @@ window.addEventListener('mousemove', function(e){
     }, 15);
 });
 
-const uiuiui = document.getElementsByClassName('cursor-hover');
-
-for (const iterator of uiuiui) {
+const cursorHover = document.getElementsByClassName('cursor-hover');
+for (const iterator of cursorHover) {
     iterator.addEventListener("mouseover", () => {
         document.getElementById('cursor-container').classList.add('cursor-active');
     });

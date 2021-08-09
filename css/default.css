@@ -104,6 +104,26 @@ body {
         color: white;
         letter-spacing: 7px;
         text-transform: uppercase; }
+    .main-banner .overlayer .more-close {
+      position: absolute;
+      top: 35px;
+      right: 150px;
+      z-index: 1;
+      transform: scale(3.5);
+      opacity: 0.1; }
+      .main-banner .overlayer .more-close::after, .main-banner .overlayer .more-close::before {
+        content: "";
+        position: relative;
+        display: block;
+        width: 27px;
+        height: 1px;
+        background: #ce930b;
+        left: 4px;
+        transition: transform .2s; }
+      .main-banner .overlayer .more-close::before {
+        top: 3px; }
+      .main-banner .overlayer .more-close::after {
+        top: 2px; }
     .main-banner .overlayer .more {
       position: absolute;
       cursor: pointer;
@@ -114,14 +134,6 @@ body {
       overflow: hidden;
       padding-bottom: 3px;
       z-index: 1000; }
-      .main-banner .overlayer .more.more-active::before {
-        transition: max-width .3s;
-        transition-delay: 0.1s;
-        max-width: 100%; }
-      .main-banner .overlayer .more.more-active::after {
-        transition: opacity 0.2s, bottom 0.2s;
-        opacity: 1;
-        bottom: 0; }
       .main-banner .overlayer .more:hover::before {
         transition: max-width .3s;
         transition-delay: 0.1s;
@@ -157,28 +169,7 @@ nav {
   top: 0;
   visibility: hidden;
   transition: visibility;
-  transition-delay: .6s; }
-  nav.nav-opened {
-    visibility: visible;
-    transition-delay: 0s; }
-    nav.nav-opened .grid-container .menu-1 {
-      width: 100%;
-      transition: width .2s ease-in;
-      transition-delay: 0.1s; }
-    nav.nav-opened .grid-container .menu-2 {
-      height: 100%;
-      transition: height .2s ease-in;
-      transition-delay: 0.2s; }
-    nav.nav-opened .grid-container .menu-3, nav.nav-opened .grid-container .menu-5 {
-      transform: scaleY(1);
-      transition: transform .2s ease-in;
-      transition-delay: 0.3s; }
-    nav.nav-opened .grid-container .menu-4 {
-      transform: scaleX(1);
-      transition: transform .2s ease-in;
-      transition-delay: 0.4s; }
-    nav.nav-opened .grid-container .menu-5 {
-      transition-delay: 0.5s; }
+  transition-delay: .8s; }
   nav .grid-container {
     height: 100%;
     display: grid;
@@ -258,3 +249,45 @@ nav {
   transform: scale(10);
   opacity: 0.3;
   transition: transform .3s, opacity .3s; }
+
+#main.menu-opened nav {
+  visibility: visible;
+  transition-delay: 0s; }
+  #main.menu-opened nav .grid-container .menu-1 {
+    width: 100%;
+    transition: width .2s ease-in;
+    transition-delay: 0.1s; }
+  #main.menu-opened nav .grid-container .menu-2 {
+    height: 100%;
+    transition: height .2s ease-in;
+    transition-delay: 0.2s; }
+  #main.menu-opened nav .grid-container .menu-3, #main.menu-opened nav .grid-container .menu-5 {
+    transform: scaleY(1);
+    transition: transform .2s ease-in;
+    transition-delay: 0.3s; }
+  #main.menu-opened nav .grid-container .menu-4 {
+    transform: scaleX(1);
+    transition: transform .2s ease-in;
+    transition-delay: 0.4s; }
+  #main.menu-opened nav .grid-container .menu-5 {
+    transition-delay: 0.5s; }
+
+#main.menu-opened .more-close::before {
+  transform: rotate(45deg);
+  transition: transform .2s;
+  transition-delay: .6s; }
+
+#main.menu-opened .more-close::after {
+  transform: rotate(-45deg);
+  transition: transform .2s;
+  transition-delay: .6s; }
+
+#main.menu-opened .more::before {
+  transition: max-width .3s;
+  transition-delay: 0.1s;
+  max-width: 100%; }
+
+#main.menu-opened .more::after {
+  transition: opacity 0.2s, bottom 0.2s;
+  opacity: 1;
+  bottom: 0; }
