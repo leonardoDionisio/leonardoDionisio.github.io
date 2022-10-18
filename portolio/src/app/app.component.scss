@@ -1,4 +1,38 @@
-@import './variables';
+// Variables
+$background: #101010;
+$black: #000000;
+$white: #ffffff;
+$second-color: #ffb912;
+$second-color-darker: #ce930b;
+$background-light: lighten($color: $background, $amount: 3%);
+
+// fonts
+$popinsextrabold: 'poppinsextrabold';
+$popinsbold: 'poppinsbold';
+$popinsregular: 'poppinsregular';
+$popinsmedium: 'poppinsmedium';
+
+// :root {
+//     --c1-scale: 1;
+//     --c1-translateX: 0;
+//     --c1-translateY: 0;
+//     --c1-rotate: 0deg;
+
+//     --c2-scale: scale(1);
+//     --c2-translateX: translateX(0);
+//     --c2-translateY: translateY(0);
+//     --c2-rotate: rotate(0deg);
+
+//     --c3-scale: scale(1);
+//     --c3-translateX: translateX(0);
+//     --c3-translateY: translateY(0);
+//     --c3-rotate: rotate(0deg);
+
+//     --c4-scale: scale(1);
+//     --c4-translateX: translateX(0);
+//     --c4-translateY: translateY(0);
+//     --c4-rotate: rotate(0deg);
+// }
 
 body {
     background: $background;
@@ -107,10 +141,10 @@ body {
 
 .main-banner {
     position: relative;
-    width: calc(100% - 70px);
+    width: calc(100% - 67px);
     height: 720px;
-    left: 68px;
-    background: url('../img/banner.png') top center / cover no-repeat;
+    left: 67px;
+    background: url('../assets/banner.png') top center / cover no-repeat;
 
     .overlayer {
         display: flex;
@@ -201,53 +235,108 @@ body {
             }
         }
 
-        .more {
+        .menu-item {
             position: absolute;
             cursor: pointer;
             top: 35px;
             right: 35px;
             letter-spacing: 3px;
             font-size: 15px;
-            overflow: hidden;
             padding-bottom: 3px;
             z-index: 1000;
+            text-decoration: none;
+
+            .menu-item-name > span {
+                opacity: 1;
+                transform: scale(1) translateX(0px) translateY(0px) rotateZ(0deg);
+                transition: transform 0.3s 0.3s, opacity 0s 0.3s;
+                display: inline-block;
+            }
 
             &:hover {
-                &::before {
-                    transition: max-width .3s;
-                    transition-delay: 0.1s;
-                    max-width: 100%;
+                .menu-item-name > span {
+                    opacity: 0.3;
+                    transition: transform 0.6s, opacity 0.3s;
+                    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
                 }
 
-                &::after {
-                    transition: opacity 0.2s, bottom 0.2s;
-                    opacity: 1;
-                    bottom: 0;
+                .menu-item-name {
+                    // animation: floatOriginal 6s ease-in-out infinite;
+                    .char-1 {
+                        transform:
+                            scale(var(--c1-scale)) translateX(var(--c1-translateX))
+                            translateY(var(--c1-translateY)) rotate(var(--c1-rotate));
+                        animation: float 6s ease-in-out infinite;
+                        animation-delay: 1.2s;
+
+                    }
+
+                    .char-2 {
+                        transform:
+                            scale(var(--c2-scale)) translateX(var(--c2-translateX))
+                            translateY(var(--c2-translateY)) rotate(var(--c2-rotate));
+                        animation: float2 4.3s ease-in-out infinite;
+                        animation-delay: 0.5s;
+                    }
+
+                    .char-3 {
+                        transform:
+                            scale(var(--c3-scale)) translateX(var(--c3-translateX))
+                            translateY(var(--c3-translateY)) rotate(var(--c3-rotate));
+                        animation: float3 4s ease-in-out infinite;
+                        animation-delay: 0.5s;
+
+                    }
+
+                    .char-4 {
+                        transform: 
+                            scale(var(--c4-scale)) translateX(var(--c4-translateX))
+                            translateY(var(--c4-translateY)) rotate(var(--c4-rotate));
+                        animation: float4 2s ease-in-out infinite;
+                        animation-delay: 0.9s;
+
+                    }
+                }
+
+                .menu-item-label {
+                    color: $second-color;
+                    &::before {
+                        transform: translate3d(100%,0,0) translate3d(1px,0,0);
+                    }
                 }
             }
 
-            &::before {
-                content: attr(data-hover);
+            .menu-item-name {
+                font-family: $popinsextrabold;
+                color: $white;
+                line-height: 19px;
                 position: absolute;
-                color: $second-color;
-                left: 0;
-                overflow: hidden;
-                max-width: 0;
-                transition: max-width 0.5s;
+                left: 50%;
+                transform: translateX(-50%);
             }
 
-            &::after {
-                content: '';
-                position: absolute;
+            .menu-item-label {
+                font-family: $popinsextrabold;
+                color: transparent;
+                position: relative;
+                transition: color 0s 0.3s;
                 display: block;
-                bottom: 8px;
-                opacity: 0;
-                width: 100%;
-                height: 2px;
-                background: $second-color;
-                transition: opacity 0.5s, bottom 1s;
-                transition-delay: 0.5s;
+                overflow: hidden;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: #fff;
+                    transform: translate3d(-100%,0,0) translate3d(-1px,0,0);
+                    transition: transform 0.6s;
+                    transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+                }
             }
+
         }
     }
 }
@@ -429,4 +518,64 @@ nav {
         }
 
     }
+}
+
+@keyframes float {
+	0% {
+        transform: scale(var(--c1-scale)) translateX(var(--c1-translateX))
+            translateY(var(--c1-translateY)) rotate(var(--c1-rotate));
+	}
+	50% {
+        transform: scale(var(--c1-scale)) translateX(var(--c1-translateX))
+            translateY(calc(var(--c1-translateY) - 5px)) rotate(var(--c1-rotate));
+	}
+	100% {
+        transform: scale(var(--c1-scale)) translateX(var(--c1-translateX))
+            translateY(var(--c1-translateY)) rotate(var(--c1-rotate));
+	}
+}
+
+@keyframes float2 {
+	0% {
+        transform: scale(var(--c2-scale)) translateX(var(--c2-translateX))
+            translateY(var(--c2-translateY)) rotate(var(--c2-rotate));
+	}
+	50% {
+        transform: scale(var(--c2-scale)) translateX(var(--c2-translateX))
+            translateY(calc(var(--c2-translateY) - 3px)) rotate(var(--c2-rotate));
+	}
+	100% {
+        transform: scale(var(--c2-scale)) translateX(var(--c2-translateX))
+            translateY(var(--c2-translateY)) rotate(var(--c2-rotate));
+	}
+}
+
+@keyframes float3 {
+	0% {
+        transform: scale(var(--c3-scale)) translateX(var(--c3-translateX))
+            translateY(var(--c3-translateY)) rotate(var(--c3-rotate));
+	}
+	50% {
+        transform: scale(var(--c3-scale)) translateX(var(--c3-translateX))
+            translateY(calc(var(--c3-translateY) - 6px)) rotate(var(--c3-rotate));
+	}
+	100% {
+        transform: scale(var(--c3-scale)) translateX(var(--c3-translateX))
+            translateY(var(--c3-translateY)) rotate(var(--c3-rotate));
+	}
+}
+
+@keyframes float4 {
+	0% {
+        transform: scale(var(--c4-scale)) translateX(var(--c4-translateX))
+            translateY(var(--c4-translateY)) rotate(var(--c4-rotate));
+	}
+	50% {
+        transform: scale(var(--c4-scale)) translateX(var(--c4-translateX))
+            translateY(calc(var(--c4-translateY) - 6px)) rotate(var(--c4-rotate));
+	}
+	100% {
+        transform: scale(var(--c4-scale)) translateX(var(--c4-translateX))
+            translateY(var(--c4-translateY)) rotate(var(--c4-rotate));
+	}
 }
